@@ -21,4 +21,4 @@ jobs:
 
       - name: Build and Push
         run: |
-            docker build .devcontainer --tag ghcr.io/${{ github.repository }}-image
+            docker build .devcontainer --tag ghcr.io/${{ github.repository }}-image:latest

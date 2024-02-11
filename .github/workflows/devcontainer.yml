@@ -1,0 +1,24 @@
+name: devcontainer
+on:
+  push:
+    paths:
+      - '.devcontainer/Dockerfile'
+
+jobs:
+  build:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log into GH Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push
+        run: |
+            docker build .devcontainer --tag ghcr.io/${{ github.repository }}-image

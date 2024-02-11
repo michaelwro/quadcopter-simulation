@@ -4,10 +4,8 @@
         "dockerfile": "Dockerfile",
         "args": {
             "TRICK_TAG": "19.7.1"
-            // "USERNAME": "simuser"
         }
     },
-    // "containerUser": "simuser",
     "containerEnv": {
         "SHELL": "/bin/bash"
     },

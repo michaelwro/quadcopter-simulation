@@ -38,9 +38,7 @@ RUN git clone --branch=${TRICK_TAG} https://github.com/nasa/trick.git
 
 WORKDIR /opt/trick/
 RUN ./configure
-
-# build with half available threads or just 1
-RUN make -j$((`nproc`/2 <= 1 ? 1 : `nproc`/2))
+RUN make -j
 RUN make install
 
 # create non-root user with sudo permissions

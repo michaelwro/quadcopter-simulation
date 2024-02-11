@@ -41,8 +41,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 # RUN make -j$((`nproc`/2 <= 1 ? 1 : `nproc`/2))
 # RUN make install
 
-# # create non-root user with sudo permissions
-# RUN groupadd --gid ${USER_GID} ${USERNAME} \
-#     && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} \
-#     && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
-#     && chmod 0440 /etc/sudoers.d/${USERNAME}
+# create non-root user with sudo permissions
+RUN groupadd --gid ${USER_GID} ${USERNAME} \
+    && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} \
+    && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
+    && chmod 0440 /etc/sudoers.d/${USERNAME}

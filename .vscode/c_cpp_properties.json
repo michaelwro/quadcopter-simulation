@@ -5,7 +5,10 @@
       "name": "linux",
       "defines": [],
       "includePath": [
-        "/opt/trick/include/"
+        "${TRICK_HOME}/include/",
+        "${TRICK_HOME}/share/trick/",
+        "${TRICK_HOME}/share/trick/",
+        "${TRICK_HOME}/trick_source/"
       ],
       "cppStandard": "c++11",
       "cStandard": "c11",

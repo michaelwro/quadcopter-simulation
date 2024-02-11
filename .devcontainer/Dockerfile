@@ -33,3 +33,5 @@ WORKDIR /opt/trick/
 RUN ./configure
 RUN make -j$((`nproc`/2 <= 1 ? 1 : `nproc`/2))
 RUN make install
+
+ENV TRICK_HOME=/opt/trick/

@@ -1,9 +1,19 @@
+# Build the Docker image with Trick and other deps and publish to the GH
+# container registry. The image will be used by other CI workflows.
+
 name: build-docker-image
+
+# trigger manually or whenever the Dockerfile changes
 on:
   workflow_dispatch:
   push:
     paths:
       - '.devcontainer/Dockerfile'
+    branches:
+      ["main"]
+  pull_request:
+    branches:
+      ["main"]
 
 jobs:
   build:
@@ -13,14 +23,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-image
+
       - name: Log into GH Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push
-        run: |
-            docker build .devcontainer --tag ghcr.io/${{ github.repository }}-image:latest
-            docker push ghcr.io/${{ github.repository }}-image:latest
+        uses: docker/build-push-action@v5
+        with:
+          context: .devcontainer/
+          push: ${{ github.event_name != 'pull_request' }} # Don't push on PR
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

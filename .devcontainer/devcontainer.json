@@ -1,0 +1,12 @@
+{
+    "name": "simulation",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": "../",
+        "args": {
+            "TRICK_TAG": "19.7.1",
+            "USERNAME": "simuser"
+        }
+    },
+    "containerUser": "simuser"
+}

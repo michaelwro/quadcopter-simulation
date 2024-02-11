@@ -1,0 +1,7 @@
+black
+control
+isort
+matplotlib
+numpy
+pre-commit
+scipy

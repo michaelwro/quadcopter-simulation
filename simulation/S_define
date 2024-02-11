@@ -1,0 +1,8 @@
+/********************** B E G I N  T R I C K  H E A D E R *********************
+PURPOSE: (Quadcopter simulation.)
+LIBRARY DEPENDENCIES: (
+    ()
+)
+************************ E N D  T R I C K  H E A D E R ***********************/
+
+#include "sim_objects/default_trick_sys.sm"

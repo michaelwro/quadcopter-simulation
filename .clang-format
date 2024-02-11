@@ -1,0 +1,3 @@
+BasedOnStyle: Google
+BreakBeforeBraces: Stroustrup
+BreakStringLiterals: false

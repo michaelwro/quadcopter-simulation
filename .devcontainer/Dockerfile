@@ -42,7 +42,7 @@ ENV PYTHON_VERSION=3
 WORKDIR /opt
 RUN git clone --branch=${TRICK_TAG} https://github.com/nasa/trick.git
 
-# WORKDIR /opt/trick/
+WORKDIR /opt/trick/
 RUN ./configure
 RUN make -j$((`nproc`/2 <= 1 ? 1 : `nproc`/2))
 RUN make install

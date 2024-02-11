@@ -29,7 +29,8 @@ jobs:
         with:
           imageName: ghcr.io/${{ github.repository }}
           cacheFrom: ghcr.io/${{ github.repository }}
-          push: ${{ github.event_name != 'pull_request' }} # Don't push on PR
+          eventFilterForPush: push
+          push: always
           runCmd: |
             cd simulation/
             trick-CP

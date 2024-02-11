@@ -16,16 +16,16 @@ ARG TRICK_TAG=19.7.1
 # deps identifed at https://nasa.github.io/trick/documentation/install_guide/Install-Guide#ubuntu
 # see next step about the addition of `locales` to the list
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y bison clang flex git llvm make maven swig cmake \
-    curl g++ libx11-dev libxml2-dev libxt-dev libmotif-common libmotif-dev \
-    python3-dev zlib1g-dev llvm-dev libclang-dev libudunits2-dev \
-    libgtest-dev openjdk-11-jdk zip locales
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y bison clang flex git llvm make maven swig cmake \
+#     curl g++ libx11-dev libxml2-dev libxt-dev libmotif-common libmotif-dev \
+#     python3-dev zlib1g-dev llvm-dev libclang-dev libudunits2-dev \
+#     libgtest-dev openjdk-11-jdk zip locales
 
-# fix perl-related locale warnings
-# https://askubuntu.com/questions/114759/warning-setlocale-lc-all-cannot-change-locale/114781#114781
-# https://libre-software.net/linux-server/ubuntu-setting-locale/
-RUN locale-gen en_US.UTF-8
-RUN update-locale LANG=en_US.UTF-8
+# # fix perl-related locale warnings
+# # https://askubuntu.com/questions/114759/warning-setlocale-lc-all-cannot-change-locale/114781#114781
+# # https://libre-software.net/linux-server/ubuntu-setting-locale/
+# RUN locale-gen en_US.UTF-8
+# RUN update-locale LANG=en_US.UTF-8
 
 # install other deps
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -37,18 +37,18 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 #     -r /opt/requirements.txt \
 #     && rm -rf /opt/requirements.txt
 
-# build and install NASA Trick
-ENV PYTHON_VERSION=3
-WORKDIR /opt
-RUN git clone --branch=${TRICK_TAG} https://github.com/nasa/trick.git
+# # build and install NASA Trick
+# ENV PYTHON_VERSION=3
+# WORKDIR /opt
+# RUN git clone --branch=${TRICK_TAG} https://github.com/nasa/trick.git
 
-WORKDIR /opt/trick/
-RUN ./configure
-RUN make -j$((`nproc`/2 <= 1 ? 1 : `nproc`/2))
-RUN make install
+# WORKDIR /opt/trick/
+# RUN ./configure
+# RUN make -j$((`nproc`/2 <= 1 ? 1 : `nproc`/2))
+# RUN make install
 
-# create non-root user with sudo permissions
-RUN groupadd --gid ${USER_GID} ${USERNAME} \
-    && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} \
-    && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
-    && chmod 0440 /etc/sudoers.d/${USERNAME}
+# # create non-root user with sudo permissions
+# RUN groupadd --gid ${USER_GID} ${USERNAME} \
+#     && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} \
+#     && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} \
+#     && chmod 0440 /etc/sudoers.d/${USERNAME}

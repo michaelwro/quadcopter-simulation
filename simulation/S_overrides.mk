@@ -4,11 +4,10 @@
 MAKEFLAGS += -j
 
 # # include paths
-# TRICK_CFLAGS += -I ./
-# TRICK_CXXFLAGS += -I ./
-# TRICK_SFLAGS += -I ./
+TRICK_CFLAGS += -I../include/ -I../src/
+TRICK_CXXFLAGS += -I../include/ -I../src/
+TRICK_SFLAGS += -I../modules/
 
-# other C/C++ flags
-# NOTE: Trick is developed with c++11
-TRICK_CFLAGS += -std=c11
-TRICK_CXXFLAGS += -std=c++11
+# additional options
+TRICK_CFLAGS += -std=c11 -Wall -Wextra -Werror -Wpedantic
+TRICK_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror -Wpedantic

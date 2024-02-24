@@ -8,7 +8,10 @@
         "${TRICK_HOME}/include/",
         "${TRICK_HOME}/share/trick/",
         "${TRICK_HOME}/share/trick/",
-        "${TRICK_HOME}/trick_source/"
+        "${TRICK_HOME}/trick_source/",
+        "${workspaceFolder}/include/",
+        "${workspaceFolder}/modules/",
+        "${workspaceFolder}/src/"
       ],
       "cppStandard": "c++11",
       "cStandard": "c11",

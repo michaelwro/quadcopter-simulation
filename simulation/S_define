@@ -6,3 +6,14 @@ LIBRARY DEPENDENCIES: (
 ************************ E N D  T R I C K  H E A D E R ***********************/
 
 #include "sim_objects/default_trick_sys.sm"
+
+/**
+ * @brief Simulation timestep. This is the timestep to run all dynamics at.
+ * @details Used to set timesteps for Trick jobs. Must be defined before
+ * instantiating other sim objects.
+ */
+#define SIMULATION_DT 0.01
+
+#include "SimulationTime.sm"
+
+SimulationTimeSimObject the_time;

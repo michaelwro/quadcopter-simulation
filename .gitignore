@@ -23,6 +23,8 @@ DP_*.xml
 
 # MISC. IGNORES =======================
 .vscode/settings.json
+compile_commands.json
+.cache/
 
 # C/C++ IGNORES =======================
 *.a

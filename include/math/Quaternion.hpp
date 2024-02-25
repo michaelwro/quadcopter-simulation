@@ -13,6 +13,10 @@ LIBRARY DEPENDENCIES: (
 
 namespace sim {
 
+/**
+ * @brief Quaternion to represent orientation. Uses a scalar-first
+ * representation.
+ */
 class Quaternion {
 public:
   double values[4] {1.0, 0.0, 0.0, 0.0};  //!< (--) Quaternion values
@@ -47,7 +51,7 @@ public:
    *
    * @return Four.
    */
-  static constexpr std::size_t size() noexcept { return 4; }
+  static constexpr std::size_t size() { return 4; }
 
   /**
    * @brief Get a quaternion's value.
@@ -128,6 +132,16 @@ const double& get(const Quaternion& quat)
   static_assert(index < Quaternion::size(), "Invalid index.");
   return quat(index);
 }
+
+/**
+ * @brief Multiply two quaternions. From Section 1.8 of "Aircraft Control and
+ * Simulation (B. L. Stevens et. al.)."
+ *
+ * @param p First quaternion.
+ * @param q Second quaternion.
+ * @return Quaternion product.
+ */
+Quaternion operator*(const Quaternion& p, const Quaternion& q);
 
 }  // namespace sim
 

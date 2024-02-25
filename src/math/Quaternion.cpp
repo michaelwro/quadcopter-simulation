@@ -102,4 +102,20 @@ Quaternion Quaternion::getInverse() const
   return quat;
 }
 
+// =============================================================================
+
+/**
+ * @details To perform successive transformations, do `q_c2a = q_c2b * q_b2a`
+ * which is read as the transformation from C to A, or the orientation of A with
+ * respect to B.
+ */
+Quaternion operator*(const Quaternion& p, const Quaternion& q)
+{
+  return Quaternion(
+      (p.w() * q.w()) - (p.x() * q.x()) - (p.y() * q.y()) - (p.z() * q.z()),
+      (p.x() * q.w()) + (p.w() * q.x()) - (p.z() * q.y()) + (p.y() * q.z()),
+      (p.y() * q.w()) + (p.z() * q.x()) + (p.w() * q.y()) - (p.x() * q.z()),
+      (p.z() * q.w()) - (p.y() * q.x()) + (p.x() * q.y()) + (p.w() * q.z()));
+}
+
 }  // namespace sim

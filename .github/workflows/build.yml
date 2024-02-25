@@ -29,6 +29,5 @@ jobs:
           eventFilterForPush: push
           push: always
           runCmd: |
-            cd simulation/
-            trick-CP
+            bash scripts/build.sh
             make apocalypse

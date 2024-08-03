@@ -16,7 +16,8 @@ include(FetchContent)
 
 # define build config options
 option(QUAD_WARNINGS_AS_ERRORS "Treat compilation warnings as errors." ON)
-option(QUAD_ASAN "Enable address sanitizer builds." OFF)
+option(QUAD_ASAN "Enable address sanitizer." OFF)
+option(QUAD_BUILD_TESTING "Build tests." ON)
 
 
 # set compilation output dirs
@@ -88,8 +89,7 @@ FetchContent_MakeAvailable(spdlog)
 add_subdirectory(lib/)
 
 # create target and define options
-add_executable(quadsim)
-
+add_library(quadsim STATIC)
 add_subdirectory(src/)
 
 set_target_properties(quadsim PROPERTIES
@@ -103,7 +103,14 @@ target_compile_features(quadsim
         cxx_constexpr
 )
 
-# set target compile options
+set(quadsim_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+
+target_include_directories(quadsim
+    PUBLIC
+        ${quadsim_INCLUDE_DIR}
+        ${sofa_INCLUDE_DIRECTORY}
+)
+
 target_compile_options(quadsim
     PRIVATE
         $<$<BOOL:QUAD_WARNINGS_AS_ERRORS>:-Werror>
@@ -124,5 +131,7 @@ target_link_libraries(quadsim
         spdlog
 )
 
-
-
+# add testing
+if(${QUAD_BUILD_TESTING})
+    add_subdirectory(tests/)
+endif()

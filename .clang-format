@@ -2,4 +2,4 @@ BasedOnStyle: Google
 AccessModifierOffset: -2
 BreakBeforeBraces: Stroustrup
 BreakStringLiterals: false
-SpaceBeforeCpp11BracedList : true
+SpaceBeforeCpp11BracedList: true

@@ -5,15 +5,12 @@
       "name": "linux",
       "defines": [],
       "includePath": [
-        "${TRICK_HOME}/include/",
-        "${TRICK_HOME}/share/trick/",
-        "${TRICK_HOME}/share/trick/",
-        "${TRICK_HOME}/trick_source/",
+        "${workspaceFolder}/build/_deps/eigen3-src/",
+        "${workspaceFolder}/build/_deps/spdlog-src/include/spdlog",
         "${workspaceFolder}/include/",
-        "${workspaceFolder}/modules/",
         "${workspaceFolder}/src/"
       ],
-      "cppStandard": "c++11",
+      "cppStandard": "c++20",
       "cStandard": "c11",
       "compilerPath": "/usr/bin/g++",
       "intelliSenseMode": "linux-gcc-x64"

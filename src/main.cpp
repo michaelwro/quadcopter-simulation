@@ -1,4 +1,5 @@
 #include <spdlog/spdlog.h>
+#include <iostream>
 
 #include <Eigen/Dense>
 
@@ -13,6 +14,8 @@ int main()
   m(1, 0) = 2.5;
   m(0, 1) = -1;
   m(1, 1) = m(1, 0) + m(0, 1);
+
+  std::cout << m << "\n";
 
   return 0;
 }

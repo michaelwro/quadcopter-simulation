@@ -1,19 +1,28 @@
-name: build
+name: Build & Test
 
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
   pull_request:
 
 jobs:
   build:
-    name: Build
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        compiler: [{ c: gcc, cxx: g++ }, { c: clang, cxx: clang++ }]
+
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Build
+        env:
+          CC: ${{ matrix.compiler.c }}
+          CXX: ${{ matrix.compiler.cxx }}
         run: |
-          cmake --preset Debug && cmake --build --preset Debug
+          cmake --preset ${{ matrix.configuration }}
+          cmake --build --preset default
+          ctest --preset default

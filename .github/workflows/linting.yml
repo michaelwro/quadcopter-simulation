@@ -30,14 +30,8 @@ jobs:
 
       - name: Install CppCheck
         run: |
-          git clone --branch 2.14.2 https://github.com/danmar/cppcheck.git
-          cd cppcheck/
-          cmake -B build/ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DBUILD_GUI=OFF \
-            -DUSE_MATCHCOMPILER=ON \
-            -DBUILD_TESTS=OFF
-          cmake --build build/ --parallel
-          sudo cmake --install build/
+          sudo apt-get update
+          sudo apt-get install -y cppcheck
 
       - name: Run CppCheck
         run: bash scripts/cppcheck.sh

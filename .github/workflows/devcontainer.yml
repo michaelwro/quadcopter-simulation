@@ -1,5 +1,6 @@
-name: devcontainer
+name: build-docker-image
 on:
+  workflow_dispatch:
   push:
     paths:
       - '.devcontainer/Dockerfile'
@@ -22,3 +23,4 @@ jobs:
       - name: Build and Push
         run: |
             docker build .devcontainer --tag ghcr.io/${{ github.repository }}-image:latest
+            docker push ghcr.io/${{ github.repository }}-image:latest

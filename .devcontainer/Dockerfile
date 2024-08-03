@@ -5,13 +5,6 @@ LABEL author "michaelwro"
 # NASA Trick commit/release tag
 ARG TRICK_TAG=19.7.1
 
-# # non-root user args
-# # using a non-root user (but with sudo permissions) in the dev container
-# # prevents some file permissions errors between WSL and the dev container
-# ARG USERNAME=simuser
-# ARG USER_UID=1000
-# ARG USER_GID=${USER_UID}
-
 # install NASA Trick deps and a few others
 # deps identifed at https://nasa.github.io/trick/documentation/install_guide/Install-Guide#ubuntu
 # see next step about the addition of `locales` to the list
@@ -30,12 +23,6 @@ RUN update-locale LANG=en_US.UTF-8
 # install other deps
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     sudo clang-format python3-pip gdb nano
-
-# COPY requirements.txt /opt/
-# RUN python3 -m pip install \
-#     --disable-pip-version-check --no-cache-dir \
-#     -r /opt/requirements.txt \
-#     && rm -rf /opt/requirements.txt
 
 # build and install NASA Trick
 ENV PYTHON_VERSION=3

@@ -1,1 +1,1 @@
-target_sources(quadsim PRIVATE ./main.cpp)
+add_subdirectory(time/)

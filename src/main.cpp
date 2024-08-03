@@ -3,11 +3,15 @@
 #include <Eigen/Dense>
 #include <iostream>
 
+#include "time/UtcTimeClock.hpp"
+
 int main()
 {
   // NEED TO INSTALL FMT FOR LOGGER
   spdlog::set_level(spdlog::level::debug);  // Set global log level to debug
   spdlog::info("testing 123!!!");
+
+  UtcTimeClock clock;
 
   Eigen::Matrix2d m;
   m(0, 0) = 3;

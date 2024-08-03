@@ -1,5 +1,5 @@
 /**
- * @file CalendarClockTime_struct.hpp
+ * @file CalendarTime_struct.hpp
  * @author Michael Wrona
  * @date 2024-07-19
  */
@@ -11,7 +11,7 @@
 /**
  * @brief Calendar and clock time - year, month, day, hour, minute, and seconds.
  */
-struct CalendarClockTime {
+struct CalendarTime {
   std::uint16_t year;    //!< Year number
   std::uint16_t month;   //!< Month number
   std::uint16_t day;     //!< Day number

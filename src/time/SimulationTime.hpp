@@ -6,20 +6,24 @@
 
 #pragma once
 
-#include "time/CalendarClocktime.hpp"
-
+// #include "time/IEpochTime.hpp"
+#include "time/ICalendarTimeClock.hpp"
 /**
- * IDEAS:
- * - Use TAI as base time system to base everything else off of?
+ * @brief Simulation time is atomic time
+ *
  */
-class SimulationTimeUtc {
+class SimulationTime : public ICalendarTimeClock {
 public:
-  SimulationTimeUtc() = default;
-  ~SimulationTimeUtc() = default;
+  SimulationTime() = default;
+  ~SimulationTime() = default;
+
+  CalendarTime GetCalendarTime() const override;
+
+  // double Get
 
 private:
-  double m_simElapsedTime_sec {};
-  double m_initialEpochTime_sec {};
+  // double m_simElapsedTime_sec {};
+  // double m_initialEpochTime_sec {};
 
-  CalendarClockTime m_initialUtcTime;
+  // CalendarClockTime m_initialUtcTime;
 };

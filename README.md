@@ -1,6 +1,5 @@
 # Quadcopter Simulation
 
-
 ## Required Linting Tools
 
 By default, we require the following to be set up:
@@ -49,3 +48,19 @@ cmake --preset release && cmake --build --preset release
 ### Build w/ VS Code
 
 Use `CTRL+SHIFT+B` to pull up the configured VS Code build tasks we set up.
+
+## Third Party Libs
+
+We use the following third party libraries.
+
+### Eigen
+
+We use [Eigen](https://gitlab.com/libeigen/eigen) for matrix/vector math.
+
+### spdlog
+
+We use [spdlog](https://github.com/gabime/spdlog) for logging messages.
+
+### Standards of Fundamental Astronomy (SOFA)
+
+We use [SOFA](http://www.iausofa.org/index.html) for time system conversions. See `lib/sofa/README.md` for more info.

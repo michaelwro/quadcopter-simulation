@@ -12,10 +12,10 @@
  * @brief Calendar and clock time - year, month, day, hour, minute, and seconds.
  */
 struct CalendarTime {
-  std::uint16_t year;    //!< Year number
-  std::uint16_t month;   //!< Month number
-  std::uint16_t day;     //!< Day number
-  std::uint16_t hour;    //!< Hour number
-  std::uint16_t minute;  //!< Minute number
-  double second;         //!< Second number, plus decimal seconds
+  std::uint16_t year;    //!< Year number, ex: 2024
+  std::uint16_t month;   //!< Month number [1 - 12]
+  std::uint16_t day;     //!< Day number [1, 31]
+  std::uint16_t hour;    //!< Hour number [0, 24)
+  std::uint16_t minute;  //!< Minute number [0, 60)
+  double second;         //!< Second number, plus decimal seconds [0, 60)
 };

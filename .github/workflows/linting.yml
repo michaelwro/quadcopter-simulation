@@ -29,9 +29,7 @@ jobs:
         run: pre-commit run --all-files --color=always --show-diff-on-failure
 
       - name: Install CppCheck
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cppcheck
+        run: sudo apt-get install -y cppcheck
 
       - name: Run CppCheck
         run: bash scripts/cppcheck.sh

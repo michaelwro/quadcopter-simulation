@@ -1,32 +1,49 @@
-# Prerequisites
-*.d
+# TRICK IGNORES =======================
+# build files
+.trick/
+build/
+trick.zip
+makefile
+S_main_*
+S_sie.resource
+S_source.hh
 
-# Compiled Object files
-*.slo
-*.lo
+# runtime files
+_init_log.csv
+S_job_execution
+S_run_summary
+send_hs
+varserver_log
+
+# logging files
+log_*.*
+
+# DP files
+DP_*.xml
+
+# MISC. IGNORES =======================
+.vscode/settings.json
+
+# C/C++ IGNORES =======================
+*.a
+*.app
+*.d
+*.dll
+*.exe
+*.gch
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
+*.obj
 *.out
-*.app
+*.pch
+*.so
+
+# PYTHON IGNORES ======================
+__pycache__/
+.env/
+.venv/
+env/
+venv/
+
+*.py[cod]
+*$py.class

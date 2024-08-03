@@ -1,5 +1,8 @@
 # Quadcopter Simulation
 
+[![Build & Test](https://github.com/michaelwro/quadcopter-simulation/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/michaelwro/quadcopter-simulation/actions/workflows/build.yml)
+[![Linting](https://github.com/michaelwro/quadcopter-simulation/actions/workflows/linting.yml/badge.svg?branch=main)](https://github.com/michaelwro/quadcopter-simulation/actions/workflows/linting.yml)
+
 ## Required Linting Tools
 
 By default, we require the following to be set up:

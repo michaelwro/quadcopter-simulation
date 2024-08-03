@@ -16,4 +16,4 @@ jobs:
 
       - name: Build
         run: |
-          cmake --preset debug && cmake --build --preset debug
+          cmake --preset Debug && cmake --build --preset Debug

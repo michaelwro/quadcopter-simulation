@@ -20,7 +20,7 @@ Eigen::Vector3d SphericalGravity::GetAcceleration(
 
   /**
    * Compute acceleration magnitude.
-   * g = GM / r^3
+   * g = GM / r^2
    */
   const double acceleration_mps2 = EARTH_GM_M3PS2 / (position_m * position_m);
 

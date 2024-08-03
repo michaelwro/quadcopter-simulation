@@ -18,6 +18,8 @@ namespace sim {
 
 template <std::size_t N>
 class Vector {
+  static_assert(N > 1, "No 1-length vectors.");
+
 public:
   double values[N] {0.0};  //!< (--) Vector values
 

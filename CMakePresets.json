@@ -1,0 +1,65 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 19,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "description": "Base config",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/"
+    },
+    {
+      "name": "debug",
+      "description": "Debug config.",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "debug-ci",
+      "description": "Debug config for CI.",
+      "inherits": "debug",
+      "cacheVariables": {
+        "QUAD_ASAN": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "description": "Release config.",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "jobs": 0
+    },
+    {
+      "name": "debug",
+      "description": "Build preset for debug build configuration.",
+      "inherits": "base",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release",
+      "description": "Build preset for release build configuration.",
+      "inherits": "base",
+      "configurePreset": "release"
+    },
+    {
+      "name": "ci",
+      "description": "Build preset for CI.",
+      "inherits": "base",
+      "configurePreset": "debug-ci"
+    }
+  ]
+}

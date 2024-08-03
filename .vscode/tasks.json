@@ -2,11 +2,22 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build",
+      "label": "Build (Debug)",
       "type": "shell",
       "group": "build",
       "linux": {
-        "command": "bash scripts/build.sh",
+        "command": "cmake --preset debug && cmake --build --preset debug",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      }
+    },
+    {
+      "label": "Build (Release)",
+      "type": "shell",
+      "group": "build",
+      "linux": {
+        "command": "cmake --preset release && cmake --build --preset release",
         "options": {
           "cwd": "${workspaceFolder}"
         }

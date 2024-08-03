@@ -6,6 +6,8 @@ compile_commands.json
 .cache/
 .cppcheck-cache/
 
+CMakeUserPresets.json
+
 # C/C++ IGNORES =======================
 *.a
 *.app

@@ -6,17 +6,17 @@
 
 #pragma once
 
-#include <vector>
+#include <array>
+#include <cstddef>
 
+template <std::size_t N>
 class IIntegrableObject {
 public:
   IIntegrableObject() = default;
   virtual ~IIntegrableObject() = default;
 
-  virtual std::vector<double> CalculateDerivatives(const double dt_sec) = 0;
+  virtual void CalculateDerivatives(const std::array<double, N>& states,
+                                    std::array<double, N>& statesDeriv) = 0;
 
-  virtual void GetIntegResult(const std::vector<double>& result,
-                              const double dt_sec) = 0;
-
-  virtual int GetId() const = 0;
+  static constexpr std::size_t GetNumStates() { return N; };
 };

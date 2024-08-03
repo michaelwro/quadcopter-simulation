@@ -29,7 +29,15 @@ jobs:
         run: pre-commit run --all-files --color=always --show-diff-on-failure
 
       - name: Install CppCheck
-        run: sudo apt-get install -y cppcheck
+        run: |
+          git clone --branch 2.14.2 https://github.com/danmar/cppcheck.git
+          cd cppcheck/
+          cmake -B build/ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DBUILD_GUI=OFF \
+            -DUSE_MATCHCOMPILER=ON \
+            -DBUILD_TESTS=OFF
+          cmake --build build/ --parallel
+          sudo cmake --install build/
 
       - name: Run CppCheck
         run: bash scripts/cppcheck.sh

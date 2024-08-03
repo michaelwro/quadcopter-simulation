@@ -15,8 +15,9 @@
         "ms-python.python",
         "ms-python.black-formatter",
         "ms-python.isort",
-        "ms-vscode.cpptools-extension-pack",
-        "xaver.clang-format"
+        "xaver.clang-format",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "cschlosser.doxdocgen"
       ],
       "settings": {
         "editor.insertSpaces": true,
@@ -27,7 +28,8 @@
         "[cpp]": {
           "editor.tabSize": 2,
           "editor.defaultFormatter": "xaver.clang-format"
-        }
+        },
+        "clangd.path": "clangd-15"
       }
     }
   }

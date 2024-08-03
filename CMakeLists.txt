@@ -5,7 +5,7 @@ project(
     VERSION 0.0.0
     DESCRIPTION "Quadcopter simulation."
     HOMEPAGE_URL "https://github.com/michaelwro/quadcopter-simulation"
-    LANGUAGES CXX
+    LANGUAGES C CXX
 )
 
 # generate compile_commands.json file
@@ -54,6 +54,13 @@ set(quadsim_COMPILE_DEFINITIONS_RELEASE
     ${quadsim_COMPILE_DEFINITIONS_BASE} NDEBUG
 )
 
+# enable the address sanitizer for all targets here and below
+# needs to get set before defining any targets
+if(${QUAD_ASAN})
+    add_compile_options(-fsanitize=address)
+    add_link_options(-fsanitize=address)
+endif()
+
 # get eigen library
 FetchContent_Declare(
     Eigen3
@@ -77,6 +84,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(spdlog)
 
+# build 3rd party libs
+add_subdirectory(lib/)
+
 # create target and define options
 add_executable(quadsim)
 
@@ -96,26 +106,21 @@ target_compile_features(quadsim
 # set target compile options
 target_compile_options(quadsim
     PRIVATE
-        $<$<BOOL:QUAD_ASAN>:-fsanitize=address>
         $<$<BOOL:QUAD_WARNINGS_AS_ERRORS>:-Werror>
         $<$<CONFIG:Debug>:${quadsim_COMPILE_OPTIONS_DEBUG}>
         $<$<CONFIG:Release>:${quadsim_COMPILE_OPTIONS_RELEASE}>
 )
-        
+
 target_compile_definitions(quadsim
     PRIVATE
         $<$<CONFIG:Debug>:${quadsim_COMPILE_DEFINITIONS_DEBUG}>
         $<$<CONFIG:Release>:${quadsim_COMPILE_DEFINITIONS_RELEASE}>
 )
-        
-target_link_options(quadsim
-    PRIVATE
-        $<$<BOOL:QUAD_ASAN>:-fsanitize=address>
-)
 
 target_link_libraries(quadsim
     PUBLIC
         Eigen3::Eigen
+        sofa
         spdlog
 )
 

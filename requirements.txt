@@ -1,4 +1,3 @@
 black
-cmakelang
 isort
 pre-commit

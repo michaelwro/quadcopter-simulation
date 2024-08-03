@@ -1,12 +1,12 @@
 #include <spdlog/spdlog.h>
-#include <iostream>
 
 #include <Eigen/Dense>
+#include <iostream>
 
 int main()
 {
   // NEED TO INSTALL FMT FOR LOGGER
-  spdlog::set_level(spdlog::level::debug); // Set global log level to debug
+  spdlog::set_level(spdlog::level::debug);  // Set global log level to debug
   spdlog::info("testing 123!!!");
 
   Eigen::Matrix2d m;

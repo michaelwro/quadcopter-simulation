@@ -1,10 +1,10 @@
 # simple cmake config for building SOFA
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.19)
 
 project(
     QuadSofaLib
-    VERSION 0.0.0
-    DESCRIPTION "Quadcopter project SOFA library"
+    VERSION 23.10.11
+    DESCRIPTION "SOFA library"
     HOMEPAGE_URL "http://www.iausofa.crg/current_C.html#Downloads"
     LANGUAGES C
 )
@@ -19,7 +19,7 @@ set(sofa_INCLUDE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/sofa/20231011/c/src/)
 # where source SOFA sources are
 set(sofa_SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/sofa/20231011/c/src/)
 
-# copy-pasted from SOFA file list
+# literally jsut copy-pasted from SOFA file list, minus the two .h files
 set(sofa_SOURCES
     a2af.c
     a2tf.c
@@ -276,14 +276,14 @@ set(sofa_SOURCES
 # prepend the path
 list(TRANSFORM sofa_SOURCES PREPEND ${sofa_SOURCES_DIR})
 
-# add commands to build the sources
-add_custom_command(
-    OUTPUT ${sofa_SOURCES}
-    COMMAND wget -nc http://www.iausofa.org/2023_1011_C/sofa_c-20231011.tar.gz
-    COMMAND tar -xzvf sofa_c-20231011.tar.gz
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "Getting SOFA from the web."
-)
+# # add commands to build the sources
+# add_custom_command(
+#     OUTPUT ${sofa_SOURCES}
+#     COMMAND wget -nc http://www.iausofa.org/2023_1011_C/sofa_c-20231011.tar.gz
+#     COMMAND tar -xzvf sofa_c-20231011.tar.gz
+#     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+#     COMMENT "Getting SOFA from the web."
+# )
 
 # create the SOFA target
 add_library(sofa STATIC ${sofa_SOURCES})
@@ -291,4 +291,3 @@ add_library(sofa STATIC ${sofa_SOURCES})
 # state include directories
 target_include_directories(sofa PRIVATE ${sofa_INCLUDE_DIRECTORY})
 target_include_directories(sofa SYSTEM INTERFACE ${sofa_INCLUDE_DIRECTORY})
-

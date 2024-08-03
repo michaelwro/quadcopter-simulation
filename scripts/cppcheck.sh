@@ -25,7 +25,6 @@ cppcheck $FILES \
     --enable=style \
     --std=c++20 \
     --platform=unix64 \
-    --check-level=exhaustive \
     --error-exitcode=1 \
     -I $PROJ_DIR/src/ \
     -i $PROJ_DIR/build/ \

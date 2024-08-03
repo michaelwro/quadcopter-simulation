@@ -30,11 +30,4 @@ public:
    * @return Nanosecond duration since epoch.
    */
   virtual NanoTime GetEpochNanoTime() const = 0;
-
-  /**
-   * @brief Get the elapsed calendar time since this time source's epoch.
-   *
-   * @return Calendar time since epoch.
-   */
-  virtual CalendarTime GetEpochCalendarTime() const = 0;
 };

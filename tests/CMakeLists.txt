@@ -8,12 +8,8 @@ project(
     LANGUAGES CXX
 )
 
-enable_testing()
-
-
 # get googletest
 include(CTest)
-include(FetchContent)
 include(GoogleTest)
 
 FetchContent_Declare(
@@ -24,14 +20,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
-# make our compile warnings not apply to gtest headers
-# https://discourse.cmake.org/t/disable-warning-on-fetched-projects/1978/2
-get_target_property(_inc GTest::gtest_main INTERFACE_INCLUDE_DIRECTORIES)
-target_include_directories(gtest SYSTEM INTERFACE ${_inc})
-
-# for ll tests below this file
+# for all tests below this file
 include_directories(${quadsim_INCLUDE_DIR})
-link_libraries(GTest::gtest_main quadsim)
+link_libraries(quadsim GTest::gtest_main Eigen3::Eigen)
 
 add_subdirectory(gravity/)
 add_subdirectory(time/)

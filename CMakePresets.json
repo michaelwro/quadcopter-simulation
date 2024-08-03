@@ -7,15 +7,14 @@
   },
   "configurePresets": [
     {
-      "name": "base",
-      "description": "Base config",
-      "hidden": true,
+      "name": "default",
+      "description": "Default config",
       "binaryDir": "${sourceDir}/build/"
     },
     {
       "name": "Debug",
       "description": "Debug config.",
-      "inherits": "base",
+      "inherits": "default",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "QUAD_ASAN": "ON"
@@ -24,7 +23,7 @@
     {
       "name": "Release",
       "description": "Release config.",
-      "inherits": "base",
+      "inherits": "default",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
@@ -32,21 +31,20 @@
   ],
   "buildPresets": [
     {
-      "name": "base",
-      "hidden": true,
+      "name": "default",
+      "description": "Default build preset.",
+      "configurePreset": "default",
       "jobs": 0
-    },
+    }
+  ],
+  "testPresets": [
     {
-      "name": "Debug",
-      "description": "Build preset for debug build configuration.",
-      "inherits": "base",
-      "configurePreset": "Debug"
-    },
-    {
-      "name": "Release",
-      "description": "Build preset for release build configuration.",
-      "inherits": "base",
-      "configurePreset": "Release"
+      "name": "default",
+      "description": "Run unit tests.",
+      "configurePreset": "default",
+      "execution": {
+        "timeout": 30
+      }
     }
   ]
 }

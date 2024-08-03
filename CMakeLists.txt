@@ -63,18 +63,21 @@ if(${QUAD_ASAN})
 endif()
 
 # get eigen library
+# follows https://stackoverflow.com/a/77210377
 FetchContent_Declare(
-    Eigen3
+    Eigen3 SYSTEM
     GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
     GIT_TAG 3.4.0
+    GIT_SHALLOW TRUE
+    SOURCE_SUBDIR cmake
 )
 
 FetchContent_MakeAvailable(Eigen3)
 
-# make our compile warnings not apply to eigen headers
-# https://discourse.cmake.org/t/disable-warning-on-fetched-projects/1978/2
-get_target_property(_inc Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES)
-target_include_directories(eigen SYSTEM INTERFACE ${_inc})
+if(NOT TARGET Eigen3::Eigen)
+    add_library(Eigen3::Eigen INTERFACE IMPORTED)
+    set_target_properties(Eigen3::Eigen PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${eigen3_SOURCE_DIR})
+endif()
 
 # get spdlog library
 FetchContent_Declare(
@@ -133,5 +136,6 @@ target_link_libraries(quadsim
 
 # add testing
 if(${QUAD_BUILD_TESTING})
+    enable_testing()
     add_subdirectory(tests/)
 endif()

@@ -22,7 +22,7 @@ public:
    * @brief Create a `SimulationTimeClock` object.
    */
   SimulationTimeClock() = default;
-  ~SimulationTimeClock() = default;
+  ~SimulationTimeClock() override = default;
 
   /**
    * @brief Increment simulation time by a timestep.

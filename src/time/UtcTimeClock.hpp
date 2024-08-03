@@ -12,7 +12,7 @@
 class UtcTimeClock : public ICalendarTimeClock {
 public:
   UtcTimeClock() = default;
-  ~UtcTimeClock() = default;
+  ~UtcTimeClock() override = default;
 
   /**
    * @brief Increment the UTC time by a duration `dt`.

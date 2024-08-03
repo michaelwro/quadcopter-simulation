@@ -19,7 +19,7 @@ public:
    * @brief Create a SphericalGravity object.
    */
   SphericalGravity() = default;
-  ~SphericalGravity() = default;
+  ~SphericalGravity() override = default;
 
   /**
    * @brief Calculate the gravitational acceleration vector at the specified

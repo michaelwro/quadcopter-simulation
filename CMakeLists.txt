@@ -111,7 +111,6 @@ set(quadsim_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 target_include_directories(quadsim
     PUBLIC
         ${quadsim_INCLUDE_DIR}
-        ${sofa_INCLUDE_DIRECTORY}
 )
 
 target_compile_options(quadsim

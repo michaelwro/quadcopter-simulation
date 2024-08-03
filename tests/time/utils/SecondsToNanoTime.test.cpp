@@ -8,7 +8,6 @@
 
 #include <gtest/gtest.h>
 
-#include "gtest/gtest.h"
 #include "time/NanoTime.hpp"
 
 TEST(SecondsToNanoTimeTest, Converts)

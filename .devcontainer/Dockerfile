@@ -29,14 +29,7 @@ RUN update-locale LANG=en_US.UTF-8
 
 # install other deps
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    sudo clang-format python3-pip gdb nano locales
-
-# install Python packages
-COPY ./requirements.txt /opt/
-RUN python3 -m pip install \
-    --disable-pip-version-check --no-cache-dir \
-    -r /opt/requirements.txt \
-    && rm -rf /opt/requirements.txt
+    sudo clang-format python3-pip gdb nano
 
 # build and install NASA Trick
 ENV PYTHON_VERSION=3

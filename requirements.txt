@@ -1,7 +1,4 @@
 black
-control
+cmakelang
 isort
-matplotlib
-numpy
 pre-commit
-scipy

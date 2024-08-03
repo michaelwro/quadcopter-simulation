@@ -1,25 +1,4 @@
-# TRICK IGNORES =======================
-# build files
-.trick/
 build/
-trick.zip
-makefile
-S_main_*
-S_sie.resource
-S_source.hh
-
-# runtime files
-_init_log.csv
-S_job_execution
-S_run_summary
-send_hs
-varserver_log
-
-# logging files
-log_*.*
-
-# DP files
-DP_*.xml
 
 # MISC. IGNORES =======================
 .vscode/settings.json

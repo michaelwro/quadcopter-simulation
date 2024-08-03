@@ -1,35 +1,36 @@
 {
-  "name": "simulation",
+  "name": "Simulation",
   "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "TRICK_TAG": "19.7.1"
-    }
+    "dockerfile": "../Dockerfile",
+    "context": "../"
   },
+  "remoteUser": "user",
   "customizations": {
     "vscode": {
       "extensions": [
-        "eamodio.gitlens",
+        "cschlosser.doxdocgen",
         "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "llvm-vs-code-extensions.vscode-clangd",
         "ms-azuretools.vscode-docker",
-        "ms-python.python",
+        "ms-vscode.cpptools",
         "ms-python.black-formatter",
         "ms-python.isort",
+        "ms-python.python",
+        "vscode.cpptools-extension-pack",
         "xaver.clang-format",
-        "llvm-vs-code-extensions.vscode-clangd",
-        "cschlosser.doxdocgen"
+        "cheshirekow.cmake-format"
       ],
       "settings": {
         "editor.insertSpaces": true,
+        "C_Cpp.intelliSenseEngine": "disabled",
         "[c]": {
-          "editor.tabSize": 2,
           "editor.defaultFormatter": "xaver.clang-format"
         },
         "[cpp]": {
-          "editor.tabSize": 2,
           "editor.defaultFormatter": "xaver.clang-format"
         },
-        "clangd.path": "clangd-15"
+        "clangd.path": "clangd"
       }
     }
   }

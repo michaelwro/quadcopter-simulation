@@ -4,16 +4,13 @@
  * @date 2024-07-28
  */
 
-#include "time/CalendarTimeToIsoString.hpp"
+#include "time/utils/CalendarTimeToIsoString.hpp"
 
-#include <string.h>
+#include <gtest/gtest.h>
 
 #include <string>
 
-#include "gtest/gtest.h"
 #include "time/CalendarTime_struct.hpp"
-
-#define TEST_SUITE CalendarTimeToIsoStringTest
 
 /**
  * Expected ISO string length.
@@ -23,7 +20,7 @@ constexpr int defaultIsoDecimals = 6;
 constexpr int defaultIsoStrLen =
     4 + 1 + 2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 + defaultIsoDecimals;
 
-TEST(TEST_SUITE, PrintsDateStrMixedPadding)
+TEST(CalendarTimeToIsoStringTest, PrintsDateStrMixedPadding)
 {
   const CalendarTime time {.year = 2024,
                            .month = 9,
@@ -39,9 +36,9 @@ TEST(TEST_SUITE, PrintsDateStrMixedPadding)
   EXPECT_EQ(result.length(), defaultIsoStrLen);
 }
 
-TEST(TEST_SUITE, ControlsDecimalPrecision)
+TEST(CalendarTimeToIsoStringTest, ControlsDecimalPrecision)
 {
-  const CalendarTime time {.year = 2020,
+  const CalendarTime time {.year = 2069,
                            .month = 4,
                            .day = 20,
                            .hour = 16,

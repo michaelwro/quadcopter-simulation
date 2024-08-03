@@ -6,12 +6,13 @@
 
 #include "time/UtcTimeClock.hpp"
 
+#include <sofa.h>
+#include <spdlog/spdlog.h>
+
 #include <cassert>
 #include <cmath>
 
-#include "sofa.h"
-#include "spdlog/spdlog.h"
-#include "time/CalendarTimeToIsoString.hpp"
+#include "time/utils/CalendarTimeToIsoString.hpp"
 
 void UtcTimeClock::Increment(const double dt_sec)
 {
@@ -68,12 +69,13 @@ void UtcTimeClock::Increment(const double dt_sec)
       (integersHmsfOut[3] * std::pow(10.0, -numSecondDecPoints));
 
   using CalUintType = std::uint16_t;
-  m_calendarTime.year = static_cast<CalUintType>(yearOut);
-  m_calendarTime.month = static_cast<CalUintType>(monthOut);
-  m_calendarTime.day = static_cast<CalUintType>(dayOut);
-  m_calendarTime.hour = static_cast<CalUintType>(integersHmsfOut[0]);
-  m_calendarTime.minute = static_cast<CalUintType>(integersHmsfOut[1]);
-  m_calendarTime.second = seconds;
+
+  m_calendarTime = {.year = static_cast<CalUintType>(yearOut),
+                    .month = static_cast<CalUintType>(monthOut),
+                    .day = static_cast<CalUintType>(dayOut),
+                    .hour = static_cast<CalUintType>(integersHmsfOut[0]),
+                    .minute = static_cast<CalUintType>(integersHmsfOut[1]),
+                    .second = seconds};
 
   spdlog::trace("New UTC time: {}", CalendarTimeToIsoString(m_calendarTime));
 }
@@ -115,3 +117,5 @@ void UtcTimeClock::SetCalendarTime(const CalendarTime &time)
 }
 
 CalendarTime UtcTimeClock::GetCalendarTime() const { return m_calendarTime; }
+
+double UtcTimeClock::GetJulianDate() const { return m_julianDate; }

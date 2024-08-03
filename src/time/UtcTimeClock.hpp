@@ -35,6 +35,13 @@ public:
    */
   CalendarTime GetCalendarTime() const override;
 
+  /**
+   * @brief Get the Julian date.
+   *
+   * @return Julian date [days].
+   */
+  double GetJulianDate() const;
+
 private:
   double m_julianDate {};          //!< Current UTC time as Julian date number
   CalendarTime m_calendarTime {};  //!< Current UTC calendar time

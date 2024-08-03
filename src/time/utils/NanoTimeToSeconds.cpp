@@ -4,7 +4,7 @@
  * @date 2024-07-28
  */
 
-#include "time/NanoTimeToSeconds.hpp"
+#include "time/utils/NanoTimeToSeconds.hpp"
 
 double NanoTimeToSeconds(const NanoTime time)
 {

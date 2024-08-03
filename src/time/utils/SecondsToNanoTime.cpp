@@ -4,7 +4,7 @@
  * @date 2024-07-28
  */
 
-#include "time/SecondsToNanoTime.hpp"
+#include "time/utils/SecondsToNanoTime.hpp"
 
 #include <cassert>
 #include <cmath>

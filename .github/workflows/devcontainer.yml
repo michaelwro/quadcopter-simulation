@@ -1,5 +1,10 @@
 # Build the Docker image with Trick and other deps and publish to the GH
 # container registry. The image will be used by other CI workflows.
+#
+# RESOURCES
+# https://github.com/docker/metadata-action#latest-tag
+# https://dev.to/ken_mwaura1/automate-docker-image-builds-and-push-to-github-registry-using-github-actions-4h20
+# https://stackoverflow.com/questions/75926611/github-workflow-to-push-docker-image-to-ghcr-io
 
 name: build-docker-image
 
@@ -28,6 +33,10 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}-image
+          tags: |
+            # https://github.com/docker/metadata-action#latest-tag
+            type=raw,value=latest,enable={{is_default_branch}}
+
 
       - name: Log into GH Container Registry
         uses: docker/login-action@v3

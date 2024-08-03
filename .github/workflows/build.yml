@@ -30,3 +30,5 @@ jobs:
           push: always
           runCmd: |
             cd simulation/
+            trick-CP
+            make apocalypse

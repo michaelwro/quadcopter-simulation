@@ -1,0 +1,14 @@
+/********************** B E G I N  T R I C K  H E A D E R **********************
+PURPOSE: (Job priorities.)
+LANGUAGE: (C++)
+************************ E N D  T R I C K  H E A D E R ************************/
+
+#ifndef SIM_JOB_PRIORITIES_SM
+#define SIM_JOB_PRIORITIES_SM
+
+/**
+ * @brief Highest job priority, for time-related jobs.
+ */
+#define JOB_PRIORITY_TIME P1
+
+#endif  // SIM_JOB_PRIORITIES_SM

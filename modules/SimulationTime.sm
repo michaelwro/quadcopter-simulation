@@ -1,0 +1,29 @@
+/********************** B E G I N  T R I C K  H E A D E R **********************
+PURPOSE: (Simulation time.)
+LANGUAGE: (C++)
+************************ E N D  T R I C K  H E A D E R ************************/
+
+#ifndef SIM_SIM_OBJECTS_TIME_SIMULATION_TIME_HPP
+#define SIM_SIM_OBJECTS_TIME_SIMULATION_TIME_HPP
+
+#include "job_priorities.sm"
+
+##include "time/SimulationTime.hpp"
+
+class SimulationTimeSimObject : public Trick::SimObject {
+public:
+  sim::SimulationTime simulation_time {};  //!< (--) Simulation time instance
+
+public:
+  SimulationTimeSimObject()
+  {
+    JOB_PRIORITY_TIME ("initialization") simulation_time.Initialize();
+
+    (SIMULATION_DT, "environment") simulation_time.Update();
+  }
+
+  SimulationTimeSimObject(const SimulationTimeSimObject&) = delete;
+  SimulationTimeSimObject& operator=(const SimulationTimeSimObject&) = delete;
+};
+
+#endif  // SIM_SIM_OBJECTS_TIME_SIMULATION_TIME_HPP

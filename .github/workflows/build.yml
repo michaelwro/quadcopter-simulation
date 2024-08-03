@@ -30,4 +30,5 @@ jobs:
           push: always
           runCmd: |
             bash scripts/build.sh
+            cd simulation/
             make apocalypse

@@ -1,9 +1,9 @@
-add_executable(test_time
+add_executable(time_test
     ${CMAKE_CURRENT_SOURCE_DIR}/UtcTimeClock.test.cpp
 )
 
-add_dependencies(test_time quadsim)
+add_dependencies(time_test quadsim)
 
-gtest_discover_tests(test_time)
+gtest_discover_tests(time_test)
 
 add_subdirectory(utils/)

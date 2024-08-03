@@ -6,7 +6,7 @@
       "type": "shell",
       "group": "build",
       "linux": {
-        "command": "cmake --preset debug && cmake --build --preset debug",
+        "command": "cmake --preset Debug && cmake --build --preset Debug",
         "options": {
           "cwd": "${workspaceFolder}"
         }
@@ -17,7 +17,7 @@
       "type": "shell",
       "group": "build",
       "linux": {
-        "command": "cmake --preset release && cmake --build --preset release",
+        "command": "cmake --preset Release && cmake --build --preset Release",
         "options": {
           "cwd": "${workspaceFolder}"
         }

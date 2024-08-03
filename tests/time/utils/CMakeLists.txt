@@ -1,9 +1,9 @@
-add_executable(test_time_utils
+add_executable(time_utils_test
     CalendarTimeToIsoString.test.cpp
     NanoTimeToSeconds.test.cpp
     SecondsToNanoTime.test.cpp
 )
 
-add_dependencies(test_time_utils quadsim)
+add_dependencies(time_utils_test quadsim)
 
-gtest_discover_tests(test_time_utils)
+gtest_discover_tests(time_utils_test)

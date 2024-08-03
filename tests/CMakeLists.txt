@@ -24,9 +24,14 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
+# make our compile warnings not apply to gtest headers
+# https://discourse.cmake.org/t/disable-warning-on-fetched-projects/1978/2
+get_target_property(_inc GTest::gtest_main INTERFACE_INCLUDE_DIRECTORIES)
+target_include_directories(gtest SYSTEM INTERFACE ${_inc})
+
 # for ll tests below this file
 include_directories(${quadsim_INCLUDE_DIR})
 link_libraries(GTest::gtest_main quadsim)
 
-
+add_subdirectory(gravity/)
 add_subdirectory(time/)

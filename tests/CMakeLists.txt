@@ -25,4 +25,5 @@ include_directories(${quadsim_INCLUDE_DIR})
 link_libraries(quadsim GTest::gtest_main Eigen3::Eigen)
 
 add_subdirectory(gravity/)
+add_subdirectory(math/)
 add_subdirectory(time/)

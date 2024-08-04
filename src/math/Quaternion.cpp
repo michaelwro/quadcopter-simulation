@@ -49,9 +49,8 @@ void Quaternion::Normalize()
 
   // normalize
   const double invNormSq = 1.0 / normSq;
-  for (auto& elm : m_quat) {
-    elm *= invNormSq;
-  }
+  std::for_each(m_quat.begin(), m_quat.end(),
+                [invNormSq](double& elm) { elm *= invNormSq; });
 }
 
 const double& Quaternion::w() const { return m_quat[0]; }
@@ -75,9 +74,7 @@ void Quaternion::AssignElements(const double w, const double x, const double y,
 
 void Quaternion::Negate()
 {
-  for (auto& elm : m_quat) {
-    elm *= -1.0;
-  }
+  std::for_each(m_quat.begin(), m_quat.end(), [](double& elm) { elm *= -1.0; });
 }
 
 void Quaternion::Invert()
@@ -89,7 +86,9 @@ void Quaternion::Invert()
 
 Quaternion Quaternion::GetInverse() const
 {
-  return {m_quat[0], -m_quat[1], -m_quat[2], -m_quat[3]};
+  Quaternion qInv = *this;
+  qInv.Invert();
+  return qInv;
 }
 
 void Quaternion::ForcePositiveRotation()

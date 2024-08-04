@@ -30,6 +30,10 @@ public:
    */
   Quaternion(const double w, const double x, const double y, const double z);
 
+  // default copy ctor and copy assign
+  Quaternion(const Quaternion&) = default;
+  Quaternion& operator=(const Quaternion&) = default;
+
   /**
    * @brief Quaternion move constructor. Resets other quaternion to unit
    * quaternion.

@@ -6,7 +6,6 @@
 
 #include "math/Quaternion.hpp"
 
-#include <Eigen/Dense>
 #include <algorithm>
 #include <cassert>
 #include <cmath>
@@ -15,6 +14,8 @@
 #include <numeric>
 #include <sstream>
 #include <utility>
+
+#include "math/QuaternionToDcm.hpp"
 
 Quaternion::Quaternion(const double w, const double x, const double y,
                        const double z)
@@ -34,7 +35,7 @@ Quaternion::Quaternion(Quaternion&& other)
 Quaternion& Quaternion::operator=(Quaternion&& other)
 {
   m_quat = other.m_quat;
-  other.AssignElements(1, 0, 0, 0);
+  other.Reset();
   return *this;
 }
 
@@ -51,6 +52,14 @@ void Quaternion::Normalize()
   const double invNormSq = 1.0 / normSq;
   std::for_each(m_quat.begin(), m_quat.end(),
                 [invNormSq](double& elm) { elm *= invNormSq; });
+}
+
+void Quaternion::Reset()
+{
+  m_quat[0] = 1.0;
+  m_quat[1] = 0.0;
+  m_quat[2] = 0.0;
+  m_quat[3] = 0.0;
 }
 
 const double& Quaternion::w() const { return m_quat[0]; }
@@ -98,18 +107,25 @@ void Quaternion::ForcePositiveRotation()
   }
 }
 
-Quaternion operator*(const Quaternion& p, const Quaternion& q)
+Eigen::Vector3d Quaternion::Transform(const Eigen::Vector3d& vec) const
+{
+  // convert to DCM and return transformation
+  const auto dcm = QuaternionToDcm(*this);
+  return dcm * vec;
+}
+
+Quaternion operator*(const Quaternion& q1, const Quaternion& q2)
 {
   // get vector components
-  const Eigen::Vector3d pvec(p.x(), p.y(), p.z());
-  const Eigen::Vector3d qvec(q.x(), q.y(), q.z());
+  const Eigen::Vector3d q1Vec(q1.x(), q1.y(), q1.z());
+  const Eigen::Vector3d q2Vec(q2.x(), q2.y(), q2.z());
 
   // compute scalar component
-  const double scalarPart = (p.w() * q.w()) - (pvec.dot(qvec));
+  const double scalarPart = (q1.w() * q2.w()) - (q1Vec.dot(q2Vec));
 
   // compute vector part
   const Eigen::Vector3d vectorPart =
-      (p.w() * qvec) + (q.w() * pvec) - pvec.cross(qvec);
+      (q1.w() * q2Vec) + (q2.w() * q1Vec) - q1Vec.cross(q2Vec);
 
   // ctor normalizes
   return {scalarPart, vectorPart(0), vectorPart(1), vectorPart(2)};

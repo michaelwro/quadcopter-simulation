@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <Eigen/Dense>
 #include <array>
 #include <ostream>
 
@@ -56,6 +57,11 @@ public:
    * @brief Normalize quaternion values so that this is a unit quaternion.
    */
   void Normalize();
+
+  /**
+   * @brief Reset quaternion values to unity `[1, 0, 0, 0]`.
+   */
+  void Reset();
 
   /**
    * @brief Get the scalar component.
@@ -133,6 +139,16 @@ public:
    */
   void ForcePositiveRotation();
 
+  /**
+   * @brief Transform a vector using this quaternion.
+   *
+   * `vec_a = quatAwrtB.Transform(vec_b);`
+   *
+   * @param vec Vector to transform.
+   * @return Transformed vector.
+   */
+  Eigen::Vector3d Transform(const Eigen::Vector3d& vec) const;
+
 private:
   /** @brief Underlying values, scalar first. */
   std::array<double, 4> m_quat {1, 0, 0, 0};
@@ -145,11 +161,11 @@ private:
  *
  * `quatAwrtC = quatAwrtB * quatBwrtC`
  *
- * @param p LHS quaternion.
- * @param q RHS quaternion.
+ * @param q1 LHS quaternion.
+ * @param q2 RHS quaternion.
  * @return Quaternion product.
  */
-Quaternion operator*(const Quaternion& p, const Quaternion& q);
+Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
 /**
  * @brief Print a quaternion to a stream.

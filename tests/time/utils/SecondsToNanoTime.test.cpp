@@ -10,8 +10,7 @@
 
 #include "time/NanoTime.hpp"
 
-TEST(SecondsToNanoTimeTest, Converts)
-{
+TEST(SecondsToNanoTimeTest, Converts) {
   constexpr double input = 123456789.123;
 
   constexpr NanoTime expected = 123'456'789'123'000'000;
@@ -20,8 +19,7 @@ TEST(SecondsToNanoTimeTest, Converts)
   EXPECT_EQ(expected, result);
 }
 
-TEST(SecondsToNanoTimeDeathTest, AssertsOnNegativeInput)
-{
+TEST(SecondsToNanoTimeDeathTest, AssertsOnNegativeInput) {
   constexpr double input = 123456789.123;
 
   NanoTime res {};

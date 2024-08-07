@@ -28,8 +28,7 @@
 template <std::size_t N>
 std::tuple<std::array<double, N>, std::array<double, N>> IntegrateRk4(
     const double dt_sec, std::shared_ptr<IIntegrableObject<N>> integObj,
-    const std::array<double, N>& state)
-{
+    const std::array<double, N>& state) {
   // shorthand type
   using TypeStateVec = std::array<double, N>;
 

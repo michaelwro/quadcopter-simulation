@@ -8,8 +8,7 @@
 
 #include "math/CrossProdMatrix.hpp"
 
-Eigen::Matrix3d QuaternionToDcm(const Quaternion& q)
-{
+Eigen::Matrix3d QuaternionToDcm(const Quaternion& q) {
   const Eigen::Vector3d qvec {q.x(), q.y(), q.z()};
   const Eigen::Matrix3d qmat = CrossProdMatrix(qvec);
 

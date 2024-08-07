@@ -8,8 +8,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(QuaternionTest, DefaultCtorIsUnity)
-{
+TEST(QuaternionTest, DefaultCtorIsUnity) {
   Quaternion q;
 
   EXPECT_DOUBLE_EQ(q.w(), 1.0);
@@ -18,8 +17,7 @@ TEST(QuaternionTest, DefaultCtorIsUnity)
   EXPECT_DOUBLE_EQ(q.z(), 0.0);
 }
 
-TEST(QuaternionTest, CtorNormalizes)
-{
+TEST(QuaternionTest, CtorNormalizes) {
   Quaternion q = Quaternion::Assign(4, 3, 2, 1);
 
   EXPECT_TRUE(q.w() != 4.0);
@@ -28,8 +26,7 @@ TEST(QuaternionTest, CtorNormalizes)
   EXPECT_TRUE(q.z() != 1.0);
 }
 
-TEST(QuaternionTest, Negates)
-{
+TEST(QuaternionTest, Negates) {
   Quaternion q;
 
   q.Negate();
@@ -40,8 +37,7 @@ TEST(QuaternionTest, Negates)
   EXPECT_DOUBLE_EQ(q.z(), 0.0);
 }
 
-TEST(QuaternionTest, Inverts)
-{
+TEST(QuaternionTest, Inverts) {
   Quaternion q(1, 2, 3, 4);
 
   q.Invert();
@@ -52,8 +48,7 @@ TEST(QuaternionTest, Inverts)
   EXPECT_TRUE(q.z() < 0);
 }
 
-TEST(QuaternionTest, ForcesPositiveRotation)
-{
+TEST(QuaternionTest, ForcesPositiveRotation) {
   Quaternion q(-3, 2, 1, 1);
 
   q.ForcePositiveRotation();

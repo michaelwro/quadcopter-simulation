@@ -41,8 +41,7 @@ protected:
   static constexpr double timeJdIncremented {timeJd + increment_days};
 };
 
-TEST_F(UtcTimeClockTest, SetsTimeAndIncrements)
-{
+TEST_F(UtcTimeClockTest, SetsTimeAndIncrements) {
   constexpr double toleranceJd = 1e-6;
   constexpr double toleranceSec = 1e-4;
 

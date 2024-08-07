@@ -12,14 +12,12 @@
 
 #include "gravity/GravityModel_enum.hpp"
 
-TEST(SphericalGravityTest, ReturnsCorrectType)
-{
+TEST(SphericalGravityTest, ReturnsCorrectType) {
   SphericalGravity gravModel {};
   EXPECT_TRUE(gravModel.GetType() == GravityModel::Spherical);
 }
 
-TEST(SphericalGravityTest, MagnitudeSeemsAboutRight)
-{
+TEST(SphericalGravityTest, MagnitudeSeemsAboutRight) {
   SphericalGravity gravModel {};
 
   // generate a position

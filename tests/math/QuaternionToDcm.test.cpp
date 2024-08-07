@@ -13,8 +13,7 @@
 
 #include "spdlog/spdlog.h"
 
-TEST(QuaternionToDcmTest, SchaubExample31_37)
-{
+TEST(QuaternionToDcmTest, SchaubExample31_37) {
   const Quaternion quat(0.0, 1.0 / std::sqrt(2.0), 1.0 / std::sqrt(2.0), 0.0);
 
   const Eigen::Matrix3d expected {
@@ -33,8 +32,7 @@ TEST(QuaternionToDcmTest, SchaubExample31_37)
 }
 
 // https://www.mathworks.com/help/aerotbx/ug/dcm2quat.html
-TEST(QuaternionToDcmTest, MathworksExample)
-{
+TEST(QuaternionToDcmTest, MathworksExample) {
   // form quaternion
   const Quaternion quat(0.8224, 0.2006, 0.5320, 0.0223);
 

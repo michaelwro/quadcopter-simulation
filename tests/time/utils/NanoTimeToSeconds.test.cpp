@@ -10,8 +10,7 @@
 
 #include "time/NanoTime.hpp"
 
-TEST(NanoTimeToSecondsTest, Converts)
-{
+TEST(NanoTimeToSecondsTest, Converts) {
   constexpr NanoTime input = 3'000'100'000'000;
 
   constexpr double expected = 3000.1;

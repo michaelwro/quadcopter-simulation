@@ -7,8 +7,7 @@
 #include "gravity/SphericalGravity.hpp"
 
 Eigen::Vector3d SphericalGravity::GetAcceleration(
-    const Eigen::Vector3d& position_ecef_m)
-{
+    const Eigen::Vector3d& position_ecef_m) {
   /**
    * @brief Earth's `mu` gravity parameter `Gm` [m^3/s^2]
    * https://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf
@@ -31,7 +30,6 @@ Eigen::Vector3d SphericalGravity::GetAcceleration(
   return acceleration_ecef_mps2;
 }
 
-GravityModel SphericalGravity::GetType() const
-{
+GravityModel SphericalGravity::GetType() const {
   return GravityModel::Spherical;
 }

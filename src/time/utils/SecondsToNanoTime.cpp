@@ -9,8 +9,7 @@
 #include <cassert>
 #include <cmath>
 
-NanoTime SecondsToNanoTime(const double seconds)
-{
+NanoTime SecondsToNanoTime(const double seconds) {
   assert(seconds >= 0.0);
   return static_cast<NanoTime>(std::floor(seconds * 1e9));
 }

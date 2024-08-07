@@ -19,28 +19,24 @@
 
 Quaternion::Quaternion(const double w, const double x, const double y,
                        const double z)
-    : m_quat {w, x, y, z}
-{
+    : m_quat {w, x, y, z} {
   Normalize();
 }
 
-Quaternion::Quaternion(Quaternion&& other)
-{
+Quaternion::Quaternion(Quaternion&& other) {
   m_quat[0] = std::exchange(other.m_quat[0], 1.0);
   m_quat[1] = std::exchange(other.m_quat[1], 0.0);
   m_quat[2] = std::exchange(other.m_quat[2], 0.0);
   m_quat[3] = std::exchange(other.m_quat[3], 0.0);
 }
 
-Quaternion& Quaternion::operator=(Quaternion&& other)
-{
+Quaternion& Quaternion::operator=(Quaternion&& other) {
   m_quat = other.m_quat;
   other.Reset();
   return *this;
 }
 
-void Quaternion::Normalize()
-{
+void Quaternion::Normalize() {
   const double normSq = std::accumulate(
       m_quat.cbegin(), m_quat.cend(), 0.0,
       [](double accumd, const double elm) { return accumd += elm * elm; });
@@ -54,8 +50,7 @@ void Quaternion::Normalize()
                 [invNormSq](double& elm) { elm *= invNormSq; });
 }
 
-void Quaternion::Reset()
-{
+void Quaternion::Reset() {
   m_quat[0] = 1.0;
   m_quat[1] = 0.0;
   m_quat[2] = 0.0;
@@ -68,54 +63,46 @@ const double& Quaternion::y() const { return m_quat[2]; }
 const double& Quaternion::z() const { return m_quat[3]; }
 
 Quaternion Quaternion::Assign(const double w, const double x, const double y,
-                              const double z)
-{
+                              const double z) {
   // ctor normalizes
   return {w, x, y, z};
 }
 
 void Quaternion::AssignElements(const double w, const double x, const double y,
-                                const double z)
-{
+                                const double z) {
   m_quat = {w, x, y, z};
   Normalize();
 }
 
-void Quaternion::Negate()
-{
+void Quaternion::Negate() {
   std::for_each(m_quat.begin(), m_quat.end(), [](double& elm) { elm *= -1.0; });
 }
 
-void Quaternion::Invert()
-{
+void Quaternion::Invert() {
   m_quat[1] *= -1.0;
   m_quat[2] *= -1.0;
   m_quat[3] *= -1.0;
 }
 
-Quaternion Quaternion::GetInverse() const
-{
+Quaternion Quaternion::GetInverse() const {
   Quaternion qInv = *this;
   qInv.Invert();
   return qInv;
 }
 
-void Quaternion::ForcePositiveRotation()
-{
+void Quaternion::ForcePositiveRotation() {
   if (m_quat[0] < 0.0) {
     Negate();
   }
 }
 
-Eigen::Vector3d Quaternion::Transform(const Eigen::Vector3d& vec) const
-{
+Eigen::Vector3d Quaternion::Transform(const Eigen::Vector3d& vec) const {
   // convert to DCM and return transformation
   const auto dcm = QuaternionToDcm(*this);
   return dcm * vec;
 }
 
-Quaternion operator*(const Quaternion& q1, const Quaternion& q2)
-{
+Quaternion operator*(const Quaternion& q1, const Quaternion& q2) {
   // get vector components
   const Eigen::Vector3d q1Vec(q1.x(), q1.y(), q1.z());
   const Eigen::Vector3d q2Vec(q2.x(), q2.y(), q2.z());
@@ -131,8 +118,7 @@ Quaternion operator*(const Quaternion& q1, const Quaternion& q2)
   return {scalarPart, vectorPart(0), vectorPart(1), vectorPart(2)};
 }
 
-std::ostream& operator<<(std::ostream& os, const Quaternion& q)
-{
+std::ostream& operator<<(std::ostream& os, const Quaternion& q) {
   std::stringstream ss;
 
   ss << std::fixed << std::setprecision(std::numeric_limits<double>::digits10)

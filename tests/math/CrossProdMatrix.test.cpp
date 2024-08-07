@@ -10,8 +10,7 @@
 
 #include <Eigen/Dense>
 
-TEST(CrossProdMatrixTest, EquivalentToCrossProduct)
-{
+TEST(CrossProdMatrixTest, EquivalentToCrossProduct) {
   const Eigen::Vector3d a {-1, 2, 3};
   const Eigen::Vector3d b {4, -5, 6};
 

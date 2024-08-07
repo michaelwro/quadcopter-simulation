@@ -14,8 +14,7 @@
 
 #include "time/utils/CalendarTimeToIsoString.hpp"
 
-void UtcTimeClock::Increment(const double dt_sec)
-{
+void UtcTimeClock::Increment(const double dt_sec) {
   assert(dt_sec >= 0.0);
 
   // convert DT to days
@@ -80,8 +79,7 @@ void UtcTimeClock::Increment(const double dt_sec)
   spdlog::trace("New UTC time: {}", CalendarTimeToIsoString(m_calendarTime));
 }
 
-void UtcTimeClock::SetCalendarTime(const CalendarTime &time)
-{
+void UtcTimeClock::SetCalendarTime(const CalendarTime &time) {
   spdlog::warn("Setting new UTC time: {}", CalendarTimeToIsoString(time));
 
   m_calendarTime = time;

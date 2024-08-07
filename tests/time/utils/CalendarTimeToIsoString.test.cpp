@@ -20,8 +20,7 @@ constexpr int defaultIsoDecimals = 6;
 constexpr int defaultIsoStrLen =
     4 + 1 + 2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 + 2 + 1 + defaultIsoDecimals;
 
-TEST(CalendarTimeToIsoStringTest, PrintsDateStrMixedPadding)
-{
+TEST(CalendarTimeToIsoStringTest, PrintsDateStrMixedPadding) {
   const CalendarTime time {.year = 2024,
                            .month = 9,
                            .day = 21,
@@ -36,8 +35,7 @@ TEST(CalendarTimeToIsoStringTest, PrintsDateStrMixedPadding)
   EXPECT_EQ(result.length(), defaultIsoStrLen);
 }
 
-TEST(CalendarTimeToIsoStringTest, ControlsDecimalPrecision)
-{
+TEST(CalendarTimeToIsoStringTest, ControlsDecimalPrecision) {
   const CalendarTime time {.year = 2069,
                            .month = 4,
                            .day = 20,

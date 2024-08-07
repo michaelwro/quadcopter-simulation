@@ -11,8 +11,7 @@
 #include <sstream>
 
 std::string CalendarTimeToIsoString(const CalendarTime& time,
-                                    const int decimals)
-{
+                                    const int decimals) {
   std::stringstream ss {};
 
   /**

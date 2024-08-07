@@ -6,7 +6,6 @@
 
 #include "time/utils/NanoTimeToSeconds.hpp"
 
-double NanoTimeToSeconds(const NanoTime time)
-{
+double NanoTimeToSeconds(const NanoTime time) {
   return static_cast<double>(time) / 1e9;
 }

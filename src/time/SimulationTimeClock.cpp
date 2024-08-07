@@ -6,8 +6,7 @@
 
 #include "time/SimulationTimeClock.hpp"
 
-void SimulationTimeClock::Increment(const double dt_sec)
-{
+void SimulationTimeClock::Increment(const double dt_sec) {
   // increment sim elapsed seconds
   const NanoTime dt_nsec = SecondsToNanoTime(dt_sec);
   m_epochTime_nsec += dt_nsec;
@@ -16,7 +15,6 @@ void SimulationTimeClock::Increment(const double dt_sec)
 
 double SimulationTimeClock::GetEpochSeconds() const { return m_epochTime_sec; }
 
-NanoTime SimulationTimeClock::GetEpochNanoTime() const
-{
+NanoTime SimulationTimeClock::GetEpochNanoTime() const {
   return m_epochTime_nsec;
 }

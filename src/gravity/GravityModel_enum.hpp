@@ -12,5 +12,6 @@
  * @brief Gravity model type.
  */
 enum class GravityModel : std::uint32_t {
-  Spherical = 0  //!< Spherical model
+  Spherical = 0,  //!< Spherical model
+  J2 = 1          //!< J2 oblate earth model
 };

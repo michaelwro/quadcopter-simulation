@@ -7,3 +7,5 @@ add_executable(math_test
 add_dependencies(math_test quadsim)
 
 gtest_discover_tests(math_test)
+
+add_subdirectory(utils/)

@@ -10,6 +10,11 @@
 
 namespace constants {
 
+inline constexpr double pi = M_PI;           //!< pi constant
+inline constexpr double piDiv2 = M_PI_2;     //!< pi / 2
+inline constexpr double twoPi = 2.0 * M_PI;  //!< 2 * pi
+inline constexpr double piDiv4 = M_PI_4;     //!< pi / 4
+
 namespace wgs84 {
 /**
  * @brief `mu = GM` gravity parameter [m^3/s^2].

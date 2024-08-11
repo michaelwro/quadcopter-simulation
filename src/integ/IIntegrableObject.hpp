@@ -26,7 +26,7 @@ public:
    * @brief Using the input state values and time manager, compute the state
    * variable derivatives.
    *
-   * @param timeManager Simulation time manager.
+   * @param timeManager Time manager with the correct time at this timestep.
    * @param states State vector variables.
    * @param statesDeriv Derivative of state variables.
    */

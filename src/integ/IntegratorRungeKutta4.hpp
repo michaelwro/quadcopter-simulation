@@ -14,6 +14,7 @@
 #include <tuple>
 
 #include "integ/IIntegrableObject.hpp"
+#include "time/TimeManager.hpp"
 
 /**
  * @brief Integrate a system using the Runge Kutta 4th order (RK4) method.
@@ -21,13 +22,15 @@
  *
  * @tparam N Number of states.
  * @param dt_sec Time step [sec].
+ * @param timeManager Simulation time manager (copy, we'll mod the copy).
  * @param integObj Integrable object.
  * @param state Current state values.
  * @return {new state}, {derivatrive of new state}
  */
 template <std::size_t N>
 std::tuple<std::array<double, N>, std::array<double, N>> IntegrateRk4(
-    const double dt_sec, std::shared_ptr<IIntegrableObject<N>> integObj,
+    const double dt_sec, const TimeManager& timeManager,
+    std::shared_ptr<IIntegrableObject<N>> integObj,
     const std::array<double, N>& state) {
   // shorthand type
   using TypeStateVec = std::array<double, N>;
@@ -41,8 +44,10 @@ std::tuple<std::array<double, N>, std::array<double, N>> IntegrateRk4(
    */
 
   // calculate k1 = f(y0)
+  TimeManager timeManagerK1 = timeManager;  // at t = t0
+
   TypeStateVec derivsK1 {};
-  integObj->CalculateDerivatives(state, derivsK1);
+  integObj->CalculateDerivatives(timeManagerK1, state, derivsK1);
 
   // calcualte k2 = f(y0 + (k1 * dt / 2))
   TypeStateVec theState = state;
@@ -51,8 +56,11 @@ std::tuple<std::array<double, N>, std::array<double, N>> IntegrateRk4(
     theState[idx] = state[idx] + (0.5 * dt_sec * derivsK1[idx]);
   }
 
+  TimeManager timeManagerK2 = timeManager;
+  timeManagerK2.Increment(0.5 * dt_sec);  // at t = t0 + (h/2)
+
   TypeStateVec derivsK2 {};
-  integObj->CalculateDerivatives(theState, derivsK2);
+  integObj->CalculateDerivatives(timeManagerK2, theState, derivsK2);
 
   // calculate k3 = f(y0 + (k2 * dt / 2))
   theState.fill(0.0);
@@ -61,8 +69,11 @@ std::tuple<std::array<double, N>, std::array<double, N>> IntegrateRk4(
     theState[idx] = state[idx] + (0.5 * dt_sec * derivsK2[idx]);
   }
 
+  TimeManager timeManagerK3 = timeManager;
+  timeManagerK3.Increment(0.5 * dt_sec);  // at t = t0 + (h/2)
+
   TypeStateVec derivsK3 {};
-  integObj->CalculateDerivatives(theState, derivsK3);
+  integObj->CalculateDerivatives(timeManagerK3, theState, derivsK3);
 
   // calculate k4 = f(y0 + (k3 * dt))
   theState.fill(0.0);
@@ -71,8 +82,11 @@ std::tuple<std::array<double, N>, std::array<double, N>> IntegrateRk4(
     theState[idx] = state[idx] + (dt_sec * derivsK3[idx]);
   }
 
+  TimeManager timeManagerK4 = timeManager;
+  timeManagerK4.Increment(dt_sec);  // at t = t0 + h
+
   TypeStateVec derivsK4 {};
-  integObj->CalculateDerivatives(theState, derivsK4);
+  integObj->CalculateDerivatives(timeManagerK4, theState, derivsK4);
 
   // calculate the integral result
   TypeStateVec stateResult {};

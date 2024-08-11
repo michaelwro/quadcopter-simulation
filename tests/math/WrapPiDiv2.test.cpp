@@ -4,11 +4,11 @@
  * @date 2024-08-11
  */
 
-#include "math/utils/WrapPiDiv2.hpp"
+#include "math/WrapPiDiv2.hpp"
 
 #include <gtest/gtest.h>
 
-#include "math/utils/WrapPiDiv2.hpp"
+#include "math/WrapPiDiv2.hpp"
 #include "utils/Conversions.hpp"
 
 TEST(WrapPiDiv2Test, WithinBoundsUnmodified) {

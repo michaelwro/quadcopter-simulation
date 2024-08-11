@@ -4,7 +4,7 @@
  * @date 2024-08-11
  */
 
-#include "math/utils/WrapTwoPi.hpp"
+#include "math/WrapTwoPi.hpp"
 
 #include <cmath>
 

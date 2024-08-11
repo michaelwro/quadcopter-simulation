@@ -4,13 +4,13 @@
  * @date 2024-08-11
  */
 
-#include "math/utils/WrapTwoPi.hpp"
+#include "math/WrapTwoPi.hpp"
 
 #include <gtest/gtest.h>
 
 #include <limits>
 
-#include "math/utils/WrapPiDiv2.hpp"
+#include "math/WrapPiDiv2.hpp"
 #include "utils/Conversions.hpp"
 
 TEST(WrapTwoPiTest, WithinBoundsUnmodified) {

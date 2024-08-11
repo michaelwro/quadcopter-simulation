@@ -18,7 +18,7 @@ public:
    * @brief Create a J2Gravity object.
    */
   J2Gravity() = default;
-  virtual ~J2Gravity() = default;
+  virtual ~J2Gravity() override = default;
 
   /**
    * @brief Compute the gravitational acceleration in the ECEF frame.

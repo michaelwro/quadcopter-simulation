@@ -11,6 +11,7 @@
 #include <Eigen/Dense>
 
 #include "gravity/GravityModel_enum.hpp"
+#include "utils/constants.hpp"
 
 TEST(SphericalGravityTest, ReturnsCorrectType) {
   SphericalGravity gravModel {};
@@ -21,9 +22,8 @@ TEST(SphericalGravityTest, MagnitudeSeemsAboutRight) {
   SphericalGravity gravModel {};
 
   // generate a position
-  constexpr double EARTH_RADIUS_M = 6378137.0;
   Eigen::Vector3d position {1, -1, 1};
-  position = EARTH_RADIUS_M * position.normalized();
+  position = constants::wgs84::semiMajorAxis_m * position.normalized();
 
   // compute gravity
   const Eigen::Vector3d accelGrav_ecef_mps2 =
@@ -33,4 +33,15 @@ TEST(SphericalGravityTest, MagnitudeSeemsAboutRight) {
 
   EXPECT_TRUE(accelGrav_mps2 > 9.7);
   EXPECT_TRUE(accelGrav_mps2 < 9.9);
+}
+
+TEST(SphericalGravityTest, GravityIsDown) {
+  // positon at equator
+  Eigen::Vector3d position_ecef_m {constants::wgs84::semiMajorAxis_m, 0, 0};
+
+  // compute gravity
+  SphericalGravity model {};
+  const auto gravity_ecef_mps2 = model.GetAcceleration(position_ecef_m);
+
+  EXPECT_TRUE(gravity_ecef_mps2(0) < 0);
 }

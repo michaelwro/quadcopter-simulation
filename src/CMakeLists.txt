@@ -1,3 +1,4 @@
+add_subdirectory(atmos/)
 add_subdirectory(gravity/)
 add_subdirectory(math/)
 add_subdirectory(time/)

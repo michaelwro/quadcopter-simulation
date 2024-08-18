@@ -50,4 +50,22 @@ inline static const double eccentricity =
     semiMajorAxis_m;
 
 };  // namespace wgs84
+
+namespace atmos {
+/**
+ * @brief 1962 U.S. Standard Atmosphere sea-level pressure [Pa].
+ */
+inline constexpr double standardPressure_pa = 101325.0;
+
+/**
+ * @brief 1962 U.S. Standard Atmosphere sea-level temperature [Pa].
+ */
+inline constexpr double standardTemperature_c = 15.0;
+
+/**
+ * @brief 1962 U.S. Standard Atmosphere sea-level density [Pa].
+ */
+inline constexpr double standardDensity_kgpm3 = 1.2250;
+
+}  // namespace atmos
 };  // namespace constants

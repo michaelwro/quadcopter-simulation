@@ -11,6 +11,7 @@
 
 #include <cassert>
 #include <cmath>
+#include <stdexcept>
 
 #include "time/utils/CalendarTimeToIsoString.hpp"
 
@@ -36,6 +37,8 @@ void UtcTimeClock::Increment(const double dt_sec) {
   if (ret != 0) {
     spdlog::error("Invalid JD date input to iauJd2cal(): {:0.6f}",
                   m_julianDate);
+
+    throw std::runtime_error("Invalid JD input.");
   }
 
   // convert day fraction to hours, minutes, and seconds
@@ -91,6 +94,7 @@ void UtcTimeClock::SetCalendarTime(const CalendarTime &time) {
 
   if (ret != 0) {
     spdlog::error("Bad date input, got {} back.", ret);
+    throw std::runtime_error("Bad date input.");
   }
 
   assert(djm0Out >= 0.0);
@@ -104,6 +108,7 @@ void UtcTimeClock::SetCalendarTime(const CalendarTime &time) {
 
   if (ret != 0) {
     spdlog::error("Bad HMS input, got {} back.", ret);
+    throw std::runtime_error("BadHMS input.");
   }
 
   assert(fracOfDayOut >= 0.0);
